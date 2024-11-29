@@ -41,60 +41,82 @@ function App() {
 
   return (
     <>
-    <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-5 py-3 my-8 text-orange-500 bg-gray-700'>
-        <h1 className='text-white text-center'>Password generator</h1>
-        <div className='flex shadow rounded-lg overflow-hidden mb-4'>
+    <div className="w-full h-screen flex justify-center items-center bg-gradient-to-r from-gray-800 to-gray-900">
+      {/* Styled Heading */}
+      <h1 className="absolute top-16 text-5xl font-extrabold text-white tracking-wide drop-shadow-lg hover:text-pink-400 transition-all duration-300 ease-in-out transform hover:scale-105 font-serif">
+        Password Generator
+      </h1>
+  
+      {/* Password Generator Div */}
+      <div className="w-full max-w-lg mx-auto shadow-xl rounded-xl px-8 py-6 bg-gradient-to-br from-pink-500 to-red-400 text-white font-semibold text-lg relative">
+        {/* Input and Copy Section */}
+        <div className="flex shadow-md rounded-lg overflow-hidden mb-6 bg-white">
           <input
-          type='text'
-          value={password}
-          className='outline-none w-full py-1 px-3'
-          placeholder='password'
-          readOnly
-          ref={passwordref}
+            type="text"
+            value={password}
+            className="outline-none w-full py-2 px-4 text-gray-700"
+            placeholder="Your Password"
+            readOnly
+            ref={passwordref}
           />
           <button
-           onClick={copyPasswordtoclipboard}
-           
-          className='outline-none bg-blue-700 text-white px-3 py-1.5 shrink-0'
-          >copy</button>
-
-         
+            onClick={copyPasswordtoclipboard}
+            className="outline-none bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 transition-all duration-300"
+          >
+            Copy
+          </button>
         </div>
-        <div className='flex test-sm gap-x-2'>
-             <div className='flex items-center gap-x-1'>
-             <input type='range' 
+  
+        {/* Range Slider and Checkbox Options */}
+        <div className="flex flex-col gap-y-4">
+          {/* Length Slider */}
+          <div className="flex items-center justify-between text-sm">
+            <label className="text-white font-bold text-lg">Password Length: {length}</label>
+            <input
+              type="range"
               min={6}
               max={100}
               value={length}
-              className='cursor-pointer'
-              onChange={(e)=>{setlength(e.target.value)}}/>
-              <label>length:{length}</label>
-             </div>
-             <div className='flex items-center gap-x-1'>
-               <label>Numbers</label>
-                <input
-                type='checkbox'
+              className="cursor-pointer w-3/4"
+              onChange={(e) => setlength(e.target.value)}
+            />
+          </div>
+  
+          {/* Options */}
+          <div className="flex gap-x-4">
+            {/* Numbers Checkbox */}
+            <div className="flex items-center gap-x-2">
+              <input
+                type="checkbox"
                 defaultChecked={numallow}
                 id="numberInput"
-                onChange={()=>{
-                  setnumallow((prev)=>!prev)
+                onChange={() => {
+                  setnumallow((prev) => !prev);
                 }}
-                />
-             </div>
-             <div className='flex items-center gap-x-1'>
-               <label >Characters</label>
-                <input
-                type='checkbox'
+                className="cursor-pointer w-4 h-4"
+              />
+              <label className="text-white">Include Numbers</label>
+            </div>
+  
+            {/* Characters Checkbox */}
+            <div className="flex items-center gap-x-2">
+              <input
+                type="checkbox"
                 defaultChecked={charallow}
                 id="characterInput"
-                onChange={()=>{
-                  setcharallow((prev)=>!prev)
+                onChange={() => {
+                  setcharallow((prev) => !prev);
                 }}
-                />
-             </div>
+                className="cursor-pointer w-4 h-4"
+              />
+              <label className="text-white">Include Characters</label>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    </>
+  </>
+  
   )
 }
 
